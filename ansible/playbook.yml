@@ -1,0 +1,8 @@
+---
+- name: "Install new machine"
+  hosts: all
+  become: true
+
+  roles:
+    - common
+    - docker

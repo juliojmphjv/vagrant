@@ -1,0 +1,38 @@
+---
+- name: Docker
+  get_url:
+    url: https://get.docker.com/
+    dest: /opt/get.docker.sh
+    mode: 0755
+
+- name: "Instalar o Docker"
+  command: /opt/get.docker.sh
+
+- name: Incluir o usuário suporte ao grupo do docker-ce
+  user: 
+    name: suporte
+    groups: docker
+    append: yes
+
+- name: Download do docker compose
+  get_url:
+    url: https://github.com/docker/compose/releases/download/1.18.0/docker-compose-Linux-x86_64
+    dest: /usr/bin/docker-compose
+    mode: 0755
+
+- name: Iniciar o serviço do docker
+  service:
+    name: docker
+    enabled: yes
+    state: started
+
+- name: Alteração do daemon do docker
+  template:
+    src: daemon.json 
+    dest: /etc/docker/daemon.json
+
+- name: Reiniciar o docker
+  service:
+    name: docker
+    state: restarted
+
