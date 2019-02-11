@@ -8,9 +8,9 @@
 - name: "Instalar o Docker"
   command: /opt/get.docker.sh
 
-- name: Incluir o usuário suporte ao grupo do docker-ce
+- name: Incluir o usuário vagrant ao grupo do docker-ce
   user: 
-    name: suporte
+    name: vagrant
     groups: docker
     append: yes
 
