@@ -1,0 +1,12 @@
+Vagrant.configure("2") do |config|
+  config.vm.box = "juliojmphjv/debian11"
+  config.vm.hostname = "srv-1"
+  config.vm.provider :libvirt do |libvirt|
+    libvirt.cpus = 1
+    libvirt.memory = 2048
+  end
+  config.vm.box_check_update = false
+  config.ssh.insert_key = false
+  config.ssh.private_key_path = ["~/.ssh/vagrant/id_rsa"]
+  config.vm.post_up_message = "Bem vindo ao Vagrant com Qemu"
+end
